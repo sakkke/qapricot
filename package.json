@@ -21,6 +21,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "sirv-cli": "^1.0.0",
-    "svelte-fa": "^2.3.3"
+    "svelte-fa": "^2.3.3",
+    "svelte-simple-modal": "^1.0.3"
   }
 }
