@@ -19,6 +19,8 @@
     "svelte-windicss-preprocess": "^4.0.12"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.0"
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "sirv-cli": "^1.0.0",
+    "svelte-fa": "^2.3.3"
   }
 }
