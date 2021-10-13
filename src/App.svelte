@@ -1,11 +1,11 @@
 <script>
-	export let name;
+	import Content from './Content.svelte'
+	import Modal from 'svelte-simple-modal'
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<Modal>
+	<Content></Content>
+</Modal>
 
 <style windi:preflights:global windi:safelist:global>
 </style>
