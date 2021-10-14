@@ -1,4 +1,5 @@
 <script>
+    import Preview from './components/Preview.svelte'
     import PropertiesEditor from './components/PropertiesEditor.svelte'
     import {
         faArrowDown,
@@ -8,6 +9,7 @@
         faColumns,
         faEdit,
         faMinus,
+        faPlay,
         faPlus,
     } from '@fortawesome/free-solid-svg-icons'
     import { getContext } from 'svelte'
@@ -41,6 +43,10 @@
     function deleteRow (i) {
         rows.splice(i, 1)
         updateRows()
+    }
+
+    function showPreview () {
+        open(Preview, { rows })
     }
 
     function showPropertiesEditor (v) {
@@ -124,6 +130,9 @@
             </div>
         {/each}
         <div class="bg-gray-50 flex justify-end w-full">
+            <button class="p-0.25em" on:click={showPreview}>
+                <Fa fw icon={faPlay}></Fa>
+            </button>
             <button class="p-0.25em" on:click={addRow}>
                 <Fa fw icon={faPlus}></Fa>
             </button>
