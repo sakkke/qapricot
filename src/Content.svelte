@@ -99,7 +99,7 @@
                         {/if}
                     </div>
                     {#each row as column, j}
-                        <div class="border flex-1 m-0.5em">
+                        <div class="border flex-1 m-0.5em min-w-0">
                             <div class="flex flex-row-reverse">
                                 <div class="flex">
                                     <button class="p-0.25em" on:click={() => showPropertiesEditor(column)}>
@@ -121,7 +121,7 @@
                                         </button>
                                     {/if}
                                 </div>
-                                <div class="flex-1 text-center">{column.text}</div>
+                                <p class="break-words flex-1 overflow-auto whitespace-pre-wrap">{column.text}</p>
                             </div>
                         </div>
                     {/each}
