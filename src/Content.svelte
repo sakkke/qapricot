@@ -100,8 +100,8 @@
                     </div>
                     {#each row as column, j}
                         <div class="border flex-1 m-0.5em min-w-0">
-                            <div class="flex flex-row-reverse">
-                                <div class="flex">
+                            <div class="flex flex-col-reverse h-full">
+                                <div class="flex justify-end">
                                     <button class="p-0.25em" on:click={() => showPropertiesEditor(column)}>
                                         <Fa fw icon={faEdit}></Fa>
                                     </button>
