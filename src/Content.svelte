@@ -1,4 +1,5 @@
 <script>
+    import JsonPreview from './components/JsonPreview.svelte'
     import Preview from './components/Preview.svelte'
     import PropertiesEditor from './components/PropertiesEditor.svelte'
     import {
@@ -8,6 +9,7 @@
         faArrowUp,
         faColumns,
         faEdit,
+        faFileAlt,
         faMinus,
         faPlay,
         faPlus,
@@ -43,6 +45,10 @@
     function deleteRow (i) {
         rows.splice(i, 1)
         updateRows()
+    }
+
+    function showJsonPreview () {
+        open(JsonPreview, { rows })
     }
 
     function showPreview () {
@@ -132,6 +138,9 @@
         <div class="bg-gray-50 flex justify-end w-full">
             <button class="p-0.25em" on:click={showPreview}>
                 <Fa fw icon={faPlay}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={showJsonPreview}>
+                <Fa fw icon={faFileAlt}></Fa>
             </button>
             <button class="p-0.25em" on:click={addRow}>
                 <Fa fw icon={faPlus}></Fa>
