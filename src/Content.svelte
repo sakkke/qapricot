@@ -89,21 +89,21 @@
                                 <div class="flex flex-col h-full">
                                     <p class="break-words flex-1 overflow-auto whitespace-pre-wrap">{column.text}</p>
                                     <div class="bg-gray-50 flex justify-end">
-                                        <button class="p-0.25em" on:click={() => showPropertiesEditor(column)}>
+                                        <button class="p-0.25em" on:click={() => showPropertiesEditor(column)} title="Properties">
                                             <Fa fw icon={faEdit}></Fa>
                                         </button>
                                         {#if j !== 0}
-                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)}>
+                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)} title="Left">
                                                 <Fa fw icon={faArrowLeft}></Fa>
                                             </button>
                                         {/if}
                                         {#if j !== row.length - 1}
-                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)}>
+                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)} title="Right">
                                                 <Fa fw icon={faArrowRight}></Fa>
                                             </button>
                                         {/if}
                                         {#if row.length !== 1}
-                                            <button class="p-0.25em" on:click={() => deleteColumn(i, j)}>
+                                            <button class="p-0.25em" on:click={() => deleteColumn(i, j)} title="Remove">
                                                 <Fa fw icon={faMinus}></Fa>
                                             </button>
                                         {/if}
@@ -114,20 +114,20 @@
                     </div>
                     <div class="bg-gray-50 flex justify-end">
                         {#if i !== 0}
-                            <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)}>
+                            <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)} title="Up">
                                 <Fa fw icon={faArrowUp}></Fa>
                             </button>
                         {/if}
                         {#if i !== rows.length - 1}
-                            <button class="p-0.25em" on:click={() => tradeRow(i, i + 1)}>
+                            <button class="p-0.25em" on:click={() => tradeRow(i, i + 1)} title="Down">
                                 <Fa fw icon={faArrowDown}></Fa>
                             </button>
                         {/if}
-                        <button class="p-0.25em" on:click={() => addColumn(i)}>
+                        <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
                             <Fa fw icon={faColumns}></Fa>
                         </button>
                         {#if i !== 0}
-                            <button class="p-0.25em" on:click={() => deleteRow(i)}>
+                            <button class="p-0.25em" on:click={() => deleteRow(i)} title="Remove">
                                 <Fa fw icon={faMinus}></Fa>
                             </button>
                         {/if}
@@ -136,13 +136,13 @@
             </div>
         {/each}
         <div class="bg-gray-50 flex justify-end w-full">
-            <button class="p-0.25em" on:click={showPreview}>
+            <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
             </button>
-            <button class="p-0.25em" on:click={showJsonPreview}>
+            <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
                 <Fa fw icon={faFileAlt}></Fa>
             </button>
-            <button class="p-0.25em" on:click={addRow}>
+            <button class="p-0.25em" on:click={addRow} title="Add">
                 <Fa fw icon={faPlus}></Fa>
             </button>
         </div>
