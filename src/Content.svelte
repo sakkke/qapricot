@@ -68,17 +68,39 @@
 
 <main>
     <div class="border m-0.5em">
-        <div class="flex flex-row-reverse">
-            <div class="flex">
-                <button class="p-0.25em" on:click={addRow}>
-                    <Fa fw icon={faPlus}></Fa>
-                </button>
-            </div>
-        </div>
         {#each rows as row, i}
             <div class="border m-0.5em">
-                <div class="flex flex-row-reverse">
-                    <div class="flex">
+                <div class="flex flex-col">
+                    <div class="flex w-full">
+                        {#each row as column, j}
+                            <div class="border flex-1 m-0.5em min-w-0">
+                                <div class="flex flex-col h-full">
+                                    <p class="break-words flex-1 overflow-auto whitespace-pre-wrap">{column.text}</p>
+                                    <div class="flex justify-end">
+                                        <button class="p-0.25em" on:click={() => showPropertiesEditor(column)}>
+                                            <Fa fw icon={faEdit}></Fa>
+                                        </button>
+                                        {#if j !== 0}
+                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)}>
+                                                <Fa fw icon={faArrowLeft}></Fa>
+                                            </button>
+                                        {/if}
+                                        {#if j !== row.length - 1}
+                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)}>
+                                                <Fa fw icon={faArrowRight}></Fa>
+                                            </button>
+                                        {/if}
+                                        {#if row.length !== 1}
+                                            <button class="p-0.25em" on:click={() => deleteColumn(i, j)}>
+                                                <Fa fw icon={faMinus}></Fa>
+                                            </button>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                        {/each}
+                    </div>
+                    <div class="flex justify-end">
                         {#if i !== 0}
                             <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)}>
                                 <Fa fw icon={faArrowUp}></Fa>
@@ -98,35 +120,13 @@
                             </button>
                         {/if}
                     </div>
-                    {#each row as column, j}
-                        <div class="border flex-1 m-0.5em min-w-0">
-                            <div class="flex flex-col-reverse h-full">
-                                <div class="flex justify-end">
-                                    <button class="p-0.25em" on:click={() => showPropertiesEditor(column)}>
-                                        <Fa fw icon={faEdit}></Fa>
-                                    </button>
-                                    {#if j !== row.length - 1}
-                                        <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)}>
-                                            <Fa fw icon={faArrowLeft}></Fa>
-                                        </button>
-                                    {/if}
-                                    {#if j !== 0}
-                                        <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)}>
-                                            <Fa fw icon={faArrowRight}></Fa>
-                                        </button>
-                                    {/if}
-                                    {#if row.length !== 1}
-                                        <button class="p-0.25em" on:click={() => deleteColumn(i, j)}>
-                                            <Fa fw icon={faMinus}></Fa>
-                                        </button>
-                                    {/if}
-                                </div>
-                                <p class="break-words flex-1 overflow-auto whitespace-pre-wrap">{column.text}</p>
-                            </div>
-                        </div>
-                    {/each}
                 </div>
             </div>
         {/each}
+        <div class="flex justify-end w-full">
+            <button class="p-0.25em" on:click={addRow}>
+                <Fa fw icon={faPlus}></Fa>
+            </button>
+        </div>
     </div>
 </main>
