@@ -87,7 +87,7 @@
                         {#each row as column, j}
                             <div class="border flex-1 m-0.5em min-w-0">
                                 <div class="flex flex-col h-full">
-                                    <p class="break-words flex-1 overflow-auto whitespace-pre-wrap">{column.text}</p>
+                                    <p class="break-words flex-1 whitespace-pre-wrap">{column.text}</p>
                                     <div class="bg-gray-50 flex overflow-auto">
                                         <button class="first:ml-auto p-0.25em" on:click={() => showPropertiesEditor(column)} title="Properties">
                                             <Fa fw icon={faEdit}></Fa>
