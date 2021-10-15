@@ -123,9 +123,9 @@
                                 <Fa fw icon={faArrowDown}></Fa>
                             </button>
                         {/if}
-                        <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
-                            <Fa fw icon={faColumns}></Fa>
-                        </button>
+                            <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
+                                <Fa fw icon={faColumns}></Fa>
+                            </button>
                         {#if i !== 0}
                             <button class="p-0.25em" on:click={() => deleteRow(i)} title="Remove">
                                 <Fa fw icon={faMinus}></Fa>
