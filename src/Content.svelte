@@ -79,63 +79,65 @@
 </script>
 
 <main>
-    <div class="border m-0.5em">
-        {#each rows as row, i}
-            <div class="border m-0.5em">
-                <div class="flex flex-col">
-                    <div class="flex w-full">
-                        {#each row as column, j}
-                            <div class="border flex-1 m-0.5em min-w-0">
-                                <div class="flex flex-col h-full">
-                                    <p class="break-words flex-1 whitespace-pre-wrap">{column.text}</p>
-                                    <div class="bg-gray-50 flex overflow-auto">
-                                        <button class="first:ml-auto p-0.25em" on:click={() => showPropertiesEditor(column)} title="Properties">
-                                            <Fa fw icon={faEdit}></Fa>
-                                        </button>
-                                        {#if j !== 0}
-                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)} title="Left">
-                                                <Fa fw icon={faArrowLeft}></Fa>
+    <div class="flex flex-col min-h-screen">
+        <div class="flex-grow">
+            {#each rows as row, i}
+                <div class="border m-0.5em">
+                    <div class="flex flex-col">
+                        <div class="flex w-full">
+                            {#each row as column, j}
+                                <div class="border flex-1 m-0.5em min-w-0">
+                                    <div class="flex flex-col h-full">
+                                        <p class="break-words flex-1 whitespace-pre-wrap">{column.text}</p>
+                                        <div class="bg-gray-50 flex overflow-auto">
+                                            <button class="first:ml-auto p-0.25em" on:click={() => showPropertiesEditor(column)} title="Properties">
+                                                <Fa fw icon={faEdit}></Fa>
                                             </button>
-                                        {/if}
-                                        {#if j !== row.length - 1}
-                                            <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)} title="Right">
-                                                <Fa fw icon={faArrowRight}></Fa>
-                                            </button>
-                                        {/if}
-                                        {#if row.length !== 1}
-                                            <button class="p-0.25em" on:click={() => deleteColumn(i, j)} title="Remove">
-                                                <Fa fw icon={faMinus}></Fa>
-                                            </button>
-                                        {/if}
+                                            {#if j !== 0}
+                                                <button class="p-0.25em" on:click={() => tradeColumn(i, j, j - 1)} title="Left">
+                                                    <Fa fw icon={faArrowLeft}></Fa>
+                                                </button>
+                                            {/if}
+                                            {#if j !== row.length - 1}
+                                                <button class="p-0.25em" on:click={() => tradeColumn(i, j, j + 1)} title="Right">
+                                                    <Fa fw icon={faArrowRight}></Fa>
+                                                </button>
+                                            {/if}
+                                            {#if row.length !== 1}
+                                                <button class="p-0.25em" on:click={() => deleteColumn(i, j)} title="Remove">
+                                                    <Fa fw icon={faMinus}></Fa>
+                                                </button>
+                                            {/if}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {/each}
-                    </div>
-                    <div class="bg-gray-50 flex justify-end">
-                        {#if i !== 0}
-                            <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)} title="Up">
-                                <Fa fw icon={faArrowUp}></Fa>
-                            </button>
-                        {/if}
-                        {#if i !== rows.length - 1}
-                            <button class="p-0.25em" on:click={() => tradeRow(i, i + 1)} title="Down">
-                                <Fa fw icon={faArrowDown}></Fa>
-                            </button>
-                        {/if}
-                            <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
-                                <Fa fw icon={faColumns}></Fa>
-                            </button>
-                        {#if i !== 0}
-                            <button class="p-0.25em" on:click={() => deleteRow(i)} title="Remove">
-                                <Fa fw icon={faMinus}></Fa>
-                            </button>
-                        {/if}
+                            {/each}
+                        </div>
+                        <div class="bg-gray-50 flex justify-end">
+                            {#if i !== 0}
+                                <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)} title="Up">
+                                    <Fa fw icon={faArrowUp}></Fa>
+                                </button>
+                            {/if}
+                            {#if i !== rows.length - 1}
+                                <button class="p-0.25em" on:click={() => tradeRow(i, i + 1)} title="Down">
+                                    <Fa fw icon={faArrowDown}></Fa>
+                                </button>
+                            {/if}
+                                <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
+                                    <Fa fw icon={faColumns}></Fa>
+                                </button>
+                            {#if i !== 0}
+                                <button class="p-0.25em" on:click={() => deleteRow(i)} title="Remove">
+                                    <Fa fw icon={faMinus}></Fa>
+                                </button>
+                            {/if}
+                        </div>
                     </div>
                 </div>
-            </div>
-        {/each}
-        <div class="bg-gray-50 flex justify-end w-full">
+            {/each}
+        </div>
+        <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
             <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
             </button>
