@@ -94,10 +94,6 @@
         })
     }
 
-    function updateRows () {
-        rows = rows
-    }
-
     function tradeColumn (i, j, k) {
         [rows[i][j], rows[i][k]] = [rows[i][k], rows[i][j]]
         updateRows()
@@ -106,6 +102,10 @@
     function tradeRow (i, j) {
         [rows[i], rows[j]] = [rows[j], rows[i]]
         updateRows()
+    }
+
+    function updateRows () {
+        rows = rows
     }
 </script>
 
