@@ -71,7 +71,6 @@
 
     function openJson () {
         const input = document.createElement('input')
-        input.style.display = 'none'
         input.type = 'file'
         input.addEventListener('change', event => {
             const { target } = event
