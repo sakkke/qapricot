@@ -3,6 +3,7 @@
     import JsonPreview from './components/JsonPreview.svelte'
     import Preview from './components/Preview.svelte'
     import PropertiesEditor from './components/PropertiesEditor.svelte'
+    import Settings from './components/Settings.svelte'
     import {
         faArrowDown,
         faArrowLeft,
@@ -155,7 +156,7 @@
     }
 
     function showSettings () {
-        open(PropertiesEditor, { v: settings }, {}, {
+        open(Settings, { settings }, {}, {
             onClosed: () => {
                 updateSettings()
             },
