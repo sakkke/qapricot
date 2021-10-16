@@ -25,7 +25,9 @@
 
     let qapricot = {
         contents: [[createProperties()]],
-        meta: {},
+        meta: {
+            title: 'No name',
+        },
     }
     $: rows = qapricot.contents
 
@@ -67,7 +69,7 @@
         const canvas = await html2canvas(div)
         const url = canvas.toDataURL()
         const a = document.createElement('a')
-        a.download = `${Date.now().toString()}.png`
+        a.download = `${qapricot.meta.title}-${Date.now().toString()}.png`
         a.href = url
         a.click()
         div.remove()
@@ -97,7 +99,7 @@
         const blob = new Blob([json], { type: 'application/json' })
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
-        a.download = `${Date.now().toString()}.json`
+        a.download = `${qapricot.meta.title}-${Date.now().toString()}.json`
         a.href = url
         a.click()
     }
@@ -193,6 +195,7 @@
             {/each}
         </div>
         <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
+            <span class="flex-1 text-center">{qapricot.meta.title}</span>
             <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
             </button>
