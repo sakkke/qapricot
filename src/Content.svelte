@@ -9,6 +9,7 @@
         faArrowUp,
         faColumns,
         faEdit,
+        faFile,
         faFileAlt,
         faFileExport,
         faMinus,
@@ -66,6 +67,26 @@
         a.href = url
         a.click()
         div.remove()
+    }
+
+    function openJson () {
+        const input = document.createElement('input')
+        input.style.display = 'none'
+        input.type = 'file'
+        input.addEventListener('change', event => {
+            const { target } = event
+            const { files } = target
+            const file = files[0]
+            if (file.type === 'application/json') {
+                const reader = new FileReader()
+                reader.addEventListener('load', () => {
+                    const { result } = reader
+                    rows = JSON.parse(result)
+                }, false)
+                reader.readAsText(file)
+            }
+        }, false)
+        input.click()
     }
 
     function saveJson () {
@@ -174,6 +195,9 @@
             </button>
             <button class="p-0.25em" on:click={saveJson} title="Save">
                 <Fa fw icon={faSave}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={openJson} title="Open">
+                <Fa fw icon={faFile}></Fa>
             </button>
             <button class="p-0.25em" on:click={exportImage} title="Export">
                 <Fa fw icon={faFileExport}></Fa>
