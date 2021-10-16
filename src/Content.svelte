@@ -1,4 +1,5 @@
 <script>
+    import Help from './components/Help.svelte'
     import JsonPreview from './components/JsonPreview.svelte'
     import Preview from './components/Preview.svelte'
     import PropertiesEditor from './components/PropertiesEditor.svelte'
@@ -15,6 +16,7 @@
         faMinus,
         faPlay,
         faPlus,
+        faQuestion,
         faSave,
     } from '@fortawesome/free-solid-svg-icons'
     import html2canvas from 'html2canvas'
@@ -102,6 +104,10 @@
         a.download = `${qapricot.meta.title}-${Date.now().toString()}.json`
         a.href = url
         a.click()
+    }
+
+    function showHelp () {
+        open(Help)
     }
 
     function showJsonPreview () {
@@ -213,6 +219,9 @@
             </button>
             <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
                 <Fa fw icon={faFileAlt}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={showHelp} title="Help">
+                <Fa fw icon={faQuestion}></Fa>
             </button>
             <button class="p-0.25em" on:click={addRow} title="Add">
                 <Fa fw icon={faPlus}></Fa>
