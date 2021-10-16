@@ -10,10 +10,12 @@
         faColumns,
         faEdit,
         faFileAlt,
+        faFileExport,
         faMinus,
         faPlay,
         faPlus,
     } from '@fortawesome/free-solid-svg-icons'
+    import html2canvas from 'html2canvas'
     import { getContext } from 'svelte'
     import Fa from 'svelte-fa/src/fa.svelte'
 
@@ -45,6 +47,24 @@
     function deleteRow (i) {
         rows.splice(i, 1)
         updateRows()
+    }
+
+    async function exportImage () {
+        const div = document.createElement('div')
+        div.style.height = '297mm'
+        div.style.width = '210mm'
+        new Preview({
+            props: { rows },
+            target: div,
+        })
+        document.body.appendChild(div)
+        const canvas = await html2canvas(div)
+        const url = canvas.toDataURL()
+        const a = document.createElement('a')
+        a.download = `${Date.now().toString()}.png`
+        a.href = url
+        a.click()
+        div.remove()
     }
 
     function showJsonPreview () {
@@ -140,6 +160,9 @@
         <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
             <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={exportImage} title="Export">
+                <Fa fw icon={faFileExport}></Fa>
             </button>
             <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
                 <Fa fw icon={faFileAlt}></Fa>
