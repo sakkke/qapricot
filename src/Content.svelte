@@ -196,6 +196,9 @@
         </div>
         <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
             <span class="flex-1 text-center">{qapricot.meta.title}</span>
+            <button class="p-0.25em" on:click={() => showPropertiesEditor(qapricot.meta)} title="Properties">
+                <Fa fw icon={faEdit}></Fa>
+            </button>
             <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
             </button>
