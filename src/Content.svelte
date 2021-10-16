@@ -8,6 +8,7 @@
         faArrowLeft,
         faArrowRight,
         faArrowUp,
+        faCog,
         faColumns,
         faEdit,
         faFile,
@@ -25,10 +26,11 @@
 
     const { open } = getContext('simple-modal')
 
+    let settings = createSettings()
     let qapricot = {
         contents: [[createProperties()]],
         meta: {
-            title: 'No name',
+            title: settings['title.default'],
         },
     }
     $: rows = qapricot.contents
@@ -46,6 +48,12 @@
     function createProperties () {
         return {
             text: '',
+        }
+    }
+
+    function createSettings () {
+        return {
+            'title.default': 'No name',
         }
     }
 
@@ -126,6 +134,14 @@
         })
     }
 
+    function showSettings () {
+        open(PropertiesEditor, { v: settings }, {}, {
+            onClosed: () => {
+                updateSettings()
+            },
+        })
+    }
+
     function tradeColumn (i, j, k) {
         [rows[i][j], rows[i][k]] = [rows[i][k], rows[i][j]]
         updateRows()
@@ -138,6 +154,10 @@
 
     function updateRows () {
         rows = rows
+    }
+
+    function updateSettings () {
+        settings = settings
     }
 </script>
 
@@ -219,6 +239,9 @@
             </button>
             <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
                 <Fa fw icon={faFileAlt}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={showSettings} title="settings">
+                <Fa fw icon={faCog}></Fa>
             </button>
             <button class="p-0.25em" on:click={showHelp} title="Help">
                 <Fa fw icon={faQuestion}></Fa>
