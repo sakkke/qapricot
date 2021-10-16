@@ -14,6 +14,7 @@
         faMinus,
         faPlay,
         faPlus,
+        faSave,
     } from '@fortawesome/free-solid-svg-icons'
     import html2canvas from 'html2canvas'
     import { getContext } from 'svelte'
@@ -65,6 +66,16 @@
         a.href = url
         a.click()
         div.remove()
+    }
+
+    function saveJson () {
+        const json = JSON.stringify(rows, null, 2)
+        const blob = new Blob([json], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.download = `${Date.now().toString()}.json`
+        a.href = url
+        a.click()
     }
 
     function showJsonPreview () {
@@ -160,6 +171,9 @@
         <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
             <button class="p-0.25em" on:click={showPreview} title="Preview">
                 <Fa fw icon={faPlay}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={saveJson} title="Save">
+                <Fa fw icon={faSave}></Fa>
             </button>
             <button class="p-0.25em" on:click={exportImage} title="Export">
                 <Fa fw icon={faFileExport}></Fa>
