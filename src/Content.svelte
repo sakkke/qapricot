@@ -59,6 +59,7 @@
 
     function createSettings () {
         return {
+            'style.exportedImage.padding': '10mm',
             'style.navigationBar.backgroundColor': { type: 'color', value: '#f9fafb' }, // gray-50
             'style.navigationBar.color': { type: 'color', value: '#000000' },
             'style.root.backgroundColor': { type: 'color', value: '#ffffff' },
@@ -80,6 +81,7 @@
 
     async function exportImage () {
         const div = document.createElement('div')
+        div.style.padding = settings['style.exportedImage.padding']
         div.style.height = '297mm'
         div.style.width = '210mm'
         new Preview({
