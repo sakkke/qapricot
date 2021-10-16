@@ -29,7 +29,9 @@
 
     const { open } = getContext('simple-modal')
 
-    let settings = createSettings()
+    let settings = localStorage.getItem('settings') === null
+        ? createSettings()
+        : { ...createSettings(), ...JSON.parse(localStorage.getItem('settings')) }
     let qapricot = {
         contents: [[createProperties()]],
         meta: {
@@ -159,6 +161,7 @@
         open(Settings, { settings }, {}, {
             onClosed: () => {
                 updateSettings()
+                localStorage.setItem('settings', JSON.stringify(settings))
             },
         })
     }
