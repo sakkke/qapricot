@@ -48,6 +48,7 @@
     function createProperties () {
         return {
             text: '',
+            type: 'text',
         }
     }
 
