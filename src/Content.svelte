@@ -280,7 +280,7 @@
             <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
                 <Fa fw icon={faFileAlt}></Fa>
             </button>
-            <button class="p-0.25em" on:click={showSettings} title="settings">
+            <button class="p-0.25em" on:click={showSettings} title="Settings">
                 <Fa fw icon={faCog}></Fa>
             </button>
             <button class="p-0.25em" on:click={resetRows} title="Reset">
