@@ -23,7 +23,11 @@
 
     const { open } = getContext('simple-modal')
 
-    let rows = [[createProperties()]]
+    let qapricot = {
+        contents: [[createProperties()]],
+        meta: {},
+    }
+    $: rows = qapricot.contents
 
     function addRow () {
         rows.push([createProperties()])
@@ -80,7 +84,7 @@
                 const reader = new FileReader()
                 reader.addEventListener('load', () => {
                     const { result } = reader
-                    rows = JSON.parse(result)
+                    qapricot = JSON.parse(result)
                 }, false)
                 reader.readAsText(file)
             }
@@ -89,7 +93,7 @@
     }
 
     function saveJson () {
-        const json = JSON.stringify(rows, null, 2)
+        const json = JSON.stringify(qapricot, null, 2)
         const blob = new Blob([json], { type: 'application/json' })
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
@@ -99,7 +103,7 @@
     }
 
     function showJsonPreview () {
-        open(JsonPreview, { rows })
+        open(JsonPreview, { qapricot })
     }
 
     function showPreview () {

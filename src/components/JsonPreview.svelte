@@ -1,5 +1,5 @@
 <script>
-    export let rows
+    export let qapricot
 </script>
 
-<pre>{JSON.stringify(rows, null, 2)}</pre>
+<pre>{JSON.stringify(qapricot, null, 2)}</pre>
