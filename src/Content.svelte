@@ -23,6 +23,7 @@
     import html2canvas from 'html2canvas'
     import { getContext } from 'svelte'
     import Fa from 'svelte-fa/src/fa.svelte'
+    import style from 'svelte-inline-css'
 
     const { open } = getContext('simple-modal')
 
@@ -54,6 +55,11 @@
 
     function createSettings () {
         return {
+            'style.navigationBar.backgroundColor': { type: 'color', value: '#f9fafb' }, // gray-50
+            'style.navigationBar.color': { type: 'color', value: '#000000' },
+            'style.root.backgroundColor': { type: 'color', value: '#ffffff' },
+            'style.root.borderColor': { type: 'color', value: '#e5e7eb' }, // gray-200
+            'style.root.color': { type: 'color', value: '#000000' },
             'title.default': 'No name',
         }
     }
@@ -175,17 +181,27 @@
 </script>
 
 <main>
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen" use:style={{
+        backgroundColor: settings['style.root.backgroundColor'].value,
+        color: settings['style.root.color'].value,
+    }}>
         <div class="flex-grow">
             {#each rows as row, i}
-                <div class="border m-0.5em">
+                <div class="border m-0.5em" use:style={{
+                    borderColor: settings['style.root.borderColor'].value,
+                }}>
                     <div class="flex flex-col">
                         <div class="flex w-full">
                             {#each row as column, j}
-                                <div class="border flex-1 m-0.5em min-w-0">
+                                <div class="border flex-1 m-0.5em min-w-0" use:style={{
+                                    borderColor: settings['style.root.borderColor'].value,
+                                }}>
                                     <div class="flex flex-col h-full">
                                         <p class="break-words flex-1 whitespace-pre-wrap">{column.text}</p>
-                                        <div class="bg-gray-50 flex overflow-auto">
+                                        <div class="flex overflow-auto" use:style={{
+                                            backgroundColor: settings['style.navigationBar.backgroundColor'].value,
+                                            color: settings['style.navigationBar.color'].value,
+                                        }}>
                                             <button class="first:ml-auto p-0.25em" on:click={() => showPropertiesEditor(column)} title="Properties">
                                                 <Fa fw icon={faEdit}></Fa>
                                             </button>
@@ -209,7 +225,10 @@
                                 </div>
                             {/each}
                         </div>
-                        <div class="bg-gray-50 flex justify-end">
+                        <div class="flex justify-end" use:style={{
+                            backgroundColor: settings['style.navigationBar.backgroundColor'].value,
+                            color: settings['style.navigationBar.color'].value,
+                        }}>
                             {#if i !== 0}
                                 <button class="p-0.25em" on:click={() => tradeRow(i, i - 1)} title="Up">
                                     <Fa fw icon={faArrowUp}></Fa>
@@ -233,7 +252,10 @@
                 </div>
             {/each}
         </div>
-        <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
+        <div class="bottom-0 flex justify-end sticky w-full" use:style={{
+            backgroundColor: settings['style.navigationBar.backgroundColor'].value,
+            color: settings['style.navigationBar.color'].value,
+        }}>
             <span class="flex-1 text-center">{qapricot.meta.title}</span>
             <button class="p-0.25em" on:click={showRootPropertiesEditor} title="Properties">
                 <Fa fw icon={faEdit}></Fa>

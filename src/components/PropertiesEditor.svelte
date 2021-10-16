@@ -14,6 +14,10 @@
             </select></label>
         {:else if typeof v[k] === 'boolean'}
             <label>{k} <input bind:checked={v[k]} type="checkbox"></label>
+        {:else if typeof v[k] === 'object'}
+            {#if v[k].type === 'color'}
+                <label>{k} <input bind:value={v[k].value} type="color"></label>
+            {/if}
         {:else if typeof v[k] === 'string'}
             <label>{k} <textarea bind:value={v[k]} class="align-top border resize-none" cols="50" rows="3"></textarea></label>
         {/if}
