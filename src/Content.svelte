@@ -11,6 +11,7 @@
         faCog,
         faColumns,
         faEdit,
+        faEraser,
         faFile,
         faFileAlt,
         faFileExport,
@@ -109,6 +110,10 @@
             }
         }, false)
         input.click()
+    }
+
+    function resetRows () {
+        qapricot.contents = [[createProperties()]]
     }
 
     function saveJson () {
@@ -277,6 +282,9 @@
             </button>
             <button class="p-0.25em" on:click={showSettings} title="settings">
                 <Fa fw icon={faCog}></Fa>
+            </button>
+            <button class="p-0.25em" on:click={resetRows} title="Reset">
+                <Fa fw icon={faEraser}></Fa>
             </button>
             <button class="p-0.25em" on:click={showHelp} title="Help">
                 <Fa fw icon={faQuestion}></Fa>
