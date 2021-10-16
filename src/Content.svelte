@@ -147,7 +147,7 @@
                                 <button class="p-0.25em" on:click={() => addColumn(i)} title="Split">
                                     <Fa fw icon={faColumns}></Fa>
                                 </button>
-                            {#if row.length !== 1}
+                            {#if rows.length !== 1}
                                 <button class="p-0.25em" on:click={() => deleteRow(i)} title="Remove">
                                     <Fa fw icon={faMinus}></Fa>
                                 </button>
