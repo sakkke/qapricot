@@ -134,6 +134,14 @@
         })
     }
 
+    function showRootPropertiesEditor () {
+        open(PropertiesEditor, { v: qapricot.meta }, {}, {
+            onClosed: () => {
+                updateRootProperties()
+            }
+        })
+    }
+
     function showSettings () {
         open(PropertiesEditor, { v: settings }, {}, {
             onClosed: () => {
@@ -150,6 +158,10 @@
     function tradeRow (i, j) {
         [rows[i], rows[j]] = [rows[j], rows[i]]
         updateRows()
+    }
+
+    function updateRootProperties () {
+        qapricot.meta = qapricot.meta
     }
 
     function updateRows () {
@@ -222,7 +234,7 @@
         </div>
         <div class="bg-gray-50 bottom-0 flex justify-end sticky w-full">
             <span class="flex-1 text-center">{qapricot.meta.title}</span>
-            <button class="p-0.25em" on:click={() => showPropertiesEditor(qapricot.meta)} title="Properties">
+            <button class="p-0.25em" on:click={showRootPropertiesEditor} title="Properties">
                 <Fa fw icon={faEdit}></Fa>
             </button>
             <button class="p-0.25em" on:click={showPreview} title="Preview">
