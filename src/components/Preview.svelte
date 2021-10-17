@@ -11,6 +11,8 @@
             <div class="break-words whitespace-pre-wrap" use:style={{
                 textAlign: row[0].textAlign,
             }}>{@html row[0].value}</div>
+        {:else if row[0].type === 'image'}
+            <img alt="" src={row[0].file.value}>
         {:else if row[0].type === 'markdown'}
             <div class="break-words whitespace-pre-wrap" use:style={{
                 textAlign: row[0].textAlign,
@@ -27,6 +29,8 @@
                     <div class="break-words flex-1 min-w-0 whitespace-pre-wrap" use:style={{
                         textAlign: row[0].textAlign,
                     }}>{@html column.value}</div>
+                {:else if column.type === 'image'}
+                    <img alt="" src={column.file.value}>
                 {:else if column.type === 'markdown'}
                     <div class="break-words flex-1 min-w-0 whitespace-pre-wrap" use:style={{
                         textAlign: row[0].textAlign,

@@ -54,6 +54,7 @@
 
     function createProperties () {
         return {
+            file: settings['property.file.default'],
             textAlign: settings['property.textAlign.default'].value,
             type: settings['property.type.default'].value,
             value: settings['property.value.default'],
@@ -62,6 +63,7 @@
 
     function createSettings () {
         return {
+            'property.file.default': { type: 'file', value: null },
             'property.textAlign.default': { type: 'textAlign', value: 'left' },
             'property.type.default': { type: 'type', value: 'text' },
             'property.value.default': '',
@@ -233,6 +235,8 @@
                                             <div class="break-words flex-1 whitespace-pre-wrap" use:style={{
                                                 textAlign: row[0].textAlign,
                                             }}>{@html column.value}</div>
+                                        {:else if column.type === 'image'}
+                                            <img alt="" src={row[0].file.value}>
                                         {:else if column.type === 'markdown'}
                                             <div class="break-words flex-1 whitespace-pre-wrap" use:style={{
                                                 textAlign: row[0].textAlign,

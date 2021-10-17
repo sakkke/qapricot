@@ -12,6 +12,7 @@
         ],
         type: [
             'html',
+            'image',
             'markdown',
             'text',
         ],
@@ -31,6 +32,20 @@
         {:else if typeof v[k] === 'object'}
             {#if v[k].type === 'color'}
                 <label>{k} <input bind:value={v[k].value} type="color"></label>
+            {:else if v[k].type === 'file'}
+                <label>{k} <input on:change={event => {
+                    const { target } = event
+                    const { files } = target
+                    const file = files[0]
+                    if (!!file) {
+                        const reader = new window.FileReader()
+                        reader.addEventListener('load', () => {
+                            const { result } = reader
+                            v[k].value = result
+                        }, false)
+                        reader.readAsDataURL(file)
+                    }
+                }} type="file"></label>
             {:else if choicesByProperty.hasOwnProperty(v[k].type)}
                 <label>{k} <select bind:value={v[k].value}>
                     {#each choicesByProperty[v[k].type] as value}
