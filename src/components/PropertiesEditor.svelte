@@ -31,6 +31,12 @@
         {:else if typeof v[k] === 'object'}
             {#if v[k].type === 'color'}
                 <label>{k} <input bind:value={v[k].value} type="color"></label>
+            {:else if choicesByProperty.hasOwnProperty(v[k].type)}
+                <label>{k} <select bind:value={v[k].value}>
+                    {#each choicesByProperty[v[k].type] as value}
+                        <option {value}>{value}</option>
+                    {/each}
+                </select></label>
             {/if}
         {:else if typeof v[k] === 'string'}
             <label>{k} <textarea bind:value={v[k]} class="align-top border resize-none" cols="50" rows="3"></textarea></label>

@@ -54,14 +54,17 @@
 
     function createProperties () {
         return {
-            textAlign: 'left',
-            type: 'text',
-            value: '',
+            textAlign: settings['property.textAlign.default'].value,
+            type: settings['property.type.default'].value,
+            value: settings['property.value.default'],
         }
     }
 
     function createSettings () {
         return {
+            'property.textAlign.default': { type: 'textAlign', value: 'left' },
+            'property.type.default': { type: 'type', value: 'text' },
+            'property.value.default': '',
             'style.exportedImage.padding': '10mm',
             'style.navigationBar.backgroundColor': { type: 'color', value: '#f9fafb' }, // gray-50
             'style.navigationBar.color': { type: 'color', value: '#000000' },
