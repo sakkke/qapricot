@@ -1,0 +1,7 @@
+{
+    "style.navigationBar.backgroundColor": { "type": "color", "value": "#f9fafb" },
+    "style.navigationBar.color": { "type": "color", "value": "#000000" },
+    "style.root.backgroundColor": { "type": "color", "value": "#ffffff" },
+    "style.root.borderColor": { "type": "color", "value": "#e5e7eb" },
+    "style.root.color": { "type": "color", "value": "#000000" }
+}
