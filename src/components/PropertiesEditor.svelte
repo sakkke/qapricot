@@ -2,6 +2,14 @@
     export let v
 
     const choicesByProperty = {
+        textAlign: [
+            'center',
+            'end',
+            'justify',
+            'left',
+            'right',
+            'start',
+        ],
         type: [
             'text',
         ],
