@@ -1,14 +1,18 @@
 <script>
     export let v
+
+    const choicesByProperty = {
+        type: [
+            'text',
+        ],
+    }
 </script>
 
 {#each Object.keys(v) as k}
     <div class="flex flex-col">
-        {#if k === 'type'}
+        {#if choicesByProperty.hasOwnProperty(k)}
             <label>{k} <select bind:value={v[k]}>
-                {#each [
-                    'text',
-                ] as value}
+                {#each choicesByProperty[k] as value}
                     <option {value}>{value}</option>
                 {/each}
             </select></label>
