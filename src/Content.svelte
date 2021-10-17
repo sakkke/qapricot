@@ -104,7 +104,7 @@
         const iHeight = parseInt(height.slice(0, -2))
         const iMinHeight = parseInt(minHeight.slice(0, -2))
         const iWidth = parseInt(width.slice(0, -2))
-        const maxPage = Math.ceil(iHeight / iMinHeight) + 1
+        const maxPage = Math.ceil(iHeight / iMinHeight)
         div.style.height = `${iMinHeight * maxPage}px`
         const canvas = await html2canvas(div)
         const canvases = [...Array(maxPage)]
