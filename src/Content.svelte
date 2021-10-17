@@ -226,7 +226,11 @@
                                     borderColor: settings['style.root.borderColor'].value,
                                 }}>
                                     <div class="flex flex-col h-full">
-                                        {#if column.type === 'markdown'}
+                                        {#if column.type === 'html'}
+                                            <div class="break-words flex-1 whitespace-pre-wrap" use:style={{
+                                                textAlign: row[0].textAlign,
+                                            }}>{@html column.value}</div>
+                                        {:else if column.type === 'markdown'}
                                             <div class="break-words flex-1 whitespace-pre-wrap" use:style={{
                                                 textAlign: row[0].textAlign,
                                             }}>{@html marked(column.value)}</div>
