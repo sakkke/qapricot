@@ -14,7 +14,6 @@
                 const reader = new FileReader()
                 reader.addEventListener('load', () => {
                     const { result } = reader
-                    console.log(settings, JSON.parse(result))
                     const parsed = JSON.parse(result)
                     Object.keys(parsed).forEach(k => {
                         settings[k] = parsed[k]
