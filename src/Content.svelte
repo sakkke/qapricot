@@ -52,8 +52,8 @@
 
     function createProperties () {
         return {
-            text: '',
             type: 'text',
+            value: '',
         }
     }
 
@@ -208,7 +208,7 @@
                                     borderColor: settings['style.root.borderColor'].value,
                                 }}>
                                     <div class="flex flex-col h-full">
-                                        <p class="break-words flex-1 whitespace-pre-wrap">{column.text}</p>
+                                        <p class="break-words flex-1 whitespace-pre-wrap">{column.value}</p>
                                         <div class="flex overflow-auto" use:style={{
                                             backgroundColor: settings['style.navigationBar.backgroundColor'].value,
                                             color: settings['style.navigationBar.color'].value,

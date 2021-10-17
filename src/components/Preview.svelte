@@ -5,13 +5,13 @@
 {#each rows as row}
     {#if row.length === 1}
         {#if row[0].type === 'text'}
-            <p class="break-words whitespace-pre-wrap">{row[0].text}</p>
+            <p class="break-words whitespace-pre-wrap">{row[0].value}</p>
         {/if}
     {:else}
         <ul class="flex">
             {#each row as column}
                 {#if column.type === 'text'}
-                    <li class="break-words flex-1 min-w-0 whitespace-pre-wrap">{column.text}</li>
+                    <li class="break-words flex-1 min-w-0 whitespace-pre-wrap">{column.value}</li>
                 {/if}
             {/each}
         </ul>
