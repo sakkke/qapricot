@@ -21,6 +21,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "html2canvas": "^1.3.2",
+    "marked": "^3.0.7",
     "sirv-cli": "^1.0.0",
     "svelte-fa": "^2.3.3",
     "svelte-inline-css": "^1.2.0",
