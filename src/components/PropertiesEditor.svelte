@@ -11,6 +11,7 @@
             'start',
         ],
         type: [
+            'markdown',
             'text',
         ],
     }

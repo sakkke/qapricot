@@ -24,6 +24,7 @@
         faSave,
     } from '@fortawesome/free-solid-svg-icons'
     import html2canvas from 'html2canvas'
+    import marked from 'marked'
     import { getContext } from 'svelte'
     import Fa from 'svelte-fa/src/fa.svelte'
     import style from 'svelte-inline-css'
@@ -225,9 +226,15 @@
                                     borderColor: settings['style.root.borderColor'].value,
                                 }}>
                                     <div class="flex flex-col h-full">
-                                        <p class="break-words flex-1 whitespace-pre-wrap" use:style={{
-                                            textAlign: row[0].textAlign,
-                                        }}>{column.value}</p>
+                                        {#if column.type === 'markdown'}
+                                            <div class="break-words flex-1 whitespace-pre-wrap" use:style={{
+                                                textAlign: row[0].textAlign,
+                                            }}>{@html marked(column.value)}</div>
+                                        {:else if column.type === 'text'}
+                                            <p class="break-words flex-1 whitespace-pre-wrap" use:style={{
+                                                textAlign: row[0].textAlign,
+                                            }}>{column.value}</p>
+                                        {/if}
                                         <div class="flex overflow-auto" use:style={{
                                             backgroundColor: settings['style.navigationBar.backgroundColor'].value,
                                             color: settings['style.navigationBar.color'].value,
