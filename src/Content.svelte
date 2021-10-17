@@ -1,4 +1,5 @@
 <script>
+    import ExportPreview from './components/ExportPreview.svelte'
     import Help from './components/Help.svelte'
     import JsonPreview from './components/JsonPreview.svelte'
     import Preview from './components/Preview.svelte'
@@ -69,6 +70,16 @@
         }
     }
 
+    // ref: https://stackoverflow.com/a/54555834
+    function cropCanvas (canvas, x, y, width, height) {
+        const result = document.createElement('canvas')
+        result.height = height
+        result.width = width
+        const context = result.getContext('2d')
+        context.drawImage(canvas, x, y, width, height, 0, 0, width, height)
+        return result
+    }
+
     function deleteColumn (i, j) {
         rows[i].splice(j, 1)
         updateRows()
@@ -82,19 +93,24 @@
     async function exportImage () {
         const div = document.createElement('div')
         div.style.padding = settings['style.exportedImage.padding']
-        div.style.height = '297mm'
+        div.style.minHeight = '297mm'
         div.style.width = '210mm'
         new Preview({
             props: { rows },
             target: div,
         })
         document.body.appendChild(div)
+        const { height, minHeight, width } = getComputedStyle(div)
+        const iHeight = parseInt(height.slice(0, -2))
+        const iMinHeight = parseInt(minHeight.slice(0, -2))
+        const iWidth = parseInt(width.slice(0, -2))
+        const maxPage = Math.trunc(iHeight / iMinHeight) + 1
+        div.style.height = `${iMinHeight * maxPage}px`
         const canvas = await html2canvas(div)
-        const url = canvas.toDataURL()
-        const a = document.createElement('a')
-        a.download = `${qapricot.meta.title}-${Date.now().toString()}.png`
-        a.href = url
-        a.click()
+        const canvases = [...Array(maxPage)]
+            .map((_, i) => cropCanvas(canvas, 0, iMinHeight * i, iWidth, iMinHeight))
+        const urls = canvases.map(canvas => canvas.toDataURL())
+        open(ExportPreview, { title: qapricot.meta.title, urls })
         div.remove()
     }
 
@@ -280,7 +296,7 @@
             <button class="p-0.25em" on:click={openJson} title="Open">
                 <Fa fw icon={faFile}></Fa>
             </button>
-            <button class="p-0.25em" on:click={exportImage} title="Export">
+            <button class="p-0.25em" on:click={exportImage} title="Export…">
                 <Fa fw icon={faFileExport}></Fa>
             </button>
             <button class="p-0.25em" on:click={showJsonPreview} title="JSON Preview">
